@@ -12,5 +12,3 @@ add yarn.lock $APP_HOME
 run yarn install
 
 add . $APP_HOME
-
-expose 4200
