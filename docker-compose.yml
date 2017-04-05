@@ -7,6 +7,8 @@ services:
     command: sh -c 'yarn install ; npm start'
     ports:
       - "4200:4200"
+    environment: 
+      - BACKEND_URL=backend:4000
   db:
     image: postgres
   backend:
@@ -17,6 +19,7 @@ services:
     volumes:
       - ./backend:/app
       - /app/deps
+      - /app/_build
     ports:
       - "4000:4000"
     depends_on:
