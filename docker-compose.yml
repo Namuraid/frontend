@@ -1,9 +1,23 @@
 version: "2"
 services:
-  web:
+  frontend:
     build: .
     volumes:
       - .:/app
     command: sh -c 'yarn install ; npm start'
     ports:
       - "4200:4200"
+  db:
+    image: postgres
+  backend:
+    build:
+        context: backend
+        dockerfile: Dockerfile
+    command: mix phoenix.server
+    volumes:
+      - backend:/app
+      - /app/deps
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
