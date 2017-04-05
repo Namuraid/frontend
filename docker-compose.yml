@@ -4,7 +4,6 @@ services:
     build: .
     volumes:
       - .:/app
-      - /app/node_modules
-    command: npm start
+    command: sh -c 'yarn install ; npm start'
     ports:
       - "4200:4200"
