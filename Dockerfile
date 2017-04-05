@@ -1,11 +1,11 @@
-from node
+FROM node
 
 ENV APP_HOME /app
-workdir $APP_HOME
+WORKDIR $APP_HOME
 
-add package.json $APP_HOME
-add yarn.lock $APP_HOME
-run yarn install
-run yarn global add @angular/cli
+ADD package.json $APP_HOME
+ADD yarn.lock $APP_HOME
+RUN yarn install
+RUN yarn global add @angular/cli
 
-add . $APP_HOME
+ADD . $APP_HOME
