@@ -11,11 +11,11 @@ services:
     image: postgres
   backend:
     build:
-        context: backend
+        context: ./backend
         dockerfile: Dockerfile
     command: mix phoenix.server
     volumes:
-      - backend:/app
+      - ./backend:/app
       - /app/deps
     ports:
       - "4000:4000"
