@@ -1,0 +1,7 @@
+<form #selectScreenForm="ngForm" (ngSubmit)="displayScreen(selectScreenForm)" class="screen-selection-form">
+  <md-input-container class="screen-selection-input">
+    <input mdInput required id="screenId" name="screenId" ngModel
+     placeholder="Enter the identifier of the screen to be displayed">
+  </md-input-container>
+  <button md-raised-button [disabled]="this.screenId === ''" type="submit">Display</button>
+</form>

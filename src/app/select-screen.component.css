@@ -1,0 +1,13 @@
+.screen-selection-form {
+  display: block;
+  margin: 0;
+  /* Center (both vertically and horizontally) */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.screen-selection-input {
+  width: 400px;
+}

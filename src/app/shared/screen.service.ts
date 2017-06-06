@@ -1,25 +1,35 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-import { WebsocketService } from './websocket.service';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
 
-const SCREEN_URL = `ws://localhost:4000/socket/websocket`;
+import { WebsocketService, WebSocketChannel } from './websocket.service';
+import { Logger } from './logger.service';
 
-export interface Message {
-	viewName: string,
-	displayDate: Date,
-  viewData: {}
+
+interface IScreenProp {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  bgColor: string;
 }
+
 
 @Injectable()
 export class ScreenService {
-	public messages: Subject<Message>  = new Subject<Message>();
+  private channel: WebSocketChannel = null;
+  public activeScreen: Observable<string> = null;
+  public dimension: Observable<IScreenProp> = null;
 
-	constructor(private wsService: WebsocketService) {
-		this.messages   = <Subject<Message>>this.wsService
-			.connect(SCREEN_URL)
-			.map((response: MessageEvent): Message => {
-				return JSON.parse(response.data) as Message;
-			});
+	constructor(private wsService: WebsocketService, private log: Logger) {
+    this.log = log.getLogger("ScreenService");
 	}
+
+  public connectToScreen(name: string) {
+    this.log.log(`Moving to channel ${name}`);
+    if (this.channel != null)
+      this.channel.leave();
+    this.channel = this.wsService.channel(`screen:${name}`);
+    this.dimension = this.channel.subscribe<IScreenProp>("dimension");
+    this.activeScreen = this.channel.subscribe<string>("activeScreen");
+  }
 }
