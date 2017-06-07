@@ -7,7 +7,7 @@ services:
     command: sh -c 'yarn install ; npm start'
     ports:
       - "4200:4200"
-    environment: 
+    environment:
       - BACKEND_URL=backend:4000
   db:
     image: postgres
@@ -15,7 +15,7 @@ services:
     build:
         context: ./backend
         dockerfile: Dockerfile
-    command: mix phoenix.server
+    command: sh -c 'mix ecto.create; mix ecto.migrate ; mix phoenix.server'
     volumes:
       - ./backend:/app
       - /app/deps
