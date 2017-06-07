@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 /* We use angular metarial components */
-import { MdInputModule, MdButtonModule } from '@angular/material';
+import { MdButtonModule, MdSelectModule } from '@angular/material';
 
 /* Base imports to bootstrap everything */
 import { AppComponent } from './app.component';
@@ -44,7 +44,7 @@ import { WebsocketService } from './shared/websocket.service';
     HttpModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MdInputModule,
+    MdSelectModule,
     MdButtonModule
   ],
   providers: [

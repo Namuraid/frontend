@@ -20,9 +20,15 @@ export class WebSocketChannel {
 
   /* Join the channel and start receiving events (or push them) */
   public join(options = {}) {
-    this.channel.join()
-      .receive("ok", resp => this.log.log(`Connected to ${resp}`))
-      .receive("error", resp => this.log.error(`Unable to join ${resp}`));
+    return new Observable(o => {
+      this.channel.join()
+        .receive("ok", resp => {
+          this.log.log(`Connected to ${this.topic}/${JSON.stringify(resp)}`);
+          o.next(resp);
+        }).receive("error", resp => {
+          this.log.error(`Unable to join ${this.topic}/${JSON.stringify(resp)}`);
+          o.error(resp); });
+    });
   }
 
   /* Subscribe to events in the channel named 'key',
@@ -30,7 +36,7 @@ export class WebSocketChannel {
   public subscribe<T>(key) : Observable<T> {
     return new Observable(o => {
       this.channel.on(key, resp => {
-        this.log.log(`New message for ${this.topic}[${key}]: ${resp}`);
+        this.log.log(`New message for ${this.topic}[${key}]: ${JSON.stringify(resp)}`);
         o.next(resp); });
     }).map(resp => resp as T);
   }
@@ -76,7 +82,6 @@ export class WebsocketService implements OnDestroy {
   public channel(topic, options = {}) {
     let chan = new WebSocketChannel(this.socket, topic, this.log, options);
     this._channels.push(chan);
-    chan.join();
     return chan;
   }
 
