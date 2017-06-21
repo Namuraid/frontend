@@ -22,7 +22,7 @@ export class ScreenService {
       this.channel.leave();
     this.channel = this.wsService.channel(`screen:${name}`);
     this.dimension = this.channel.subscribe("dimension");
-    this.activeScreen = this.channel.subscribe("activeScreen");
+    this.activeScreen = this.channel.subscribe("activescreen");
     if (this._init_val_subscription != null)
       this._init_val_subscription.unsubscribe();
     this._init_val_subscription = this.channel
@@ -45,5 +45,9 @@ export class ScreenService {
   public leave() {
     this._init_val_subscription.unsubscribe();
     this.clearSizeProvider();
+  }
+
+  public name() {
+    return this.channel.topic;
   }
 }

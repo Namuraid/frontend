@@ -22,14 +22,17 @@ export class ScreenComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    this._route_subscription = this.route.params.subscribe(p => {
-      this.screenId = p['id'];
+    this._route_subscription = this.route.params.subscribe(
+      p => this.switchTo(p['id']));
+  }
+
+  switchTo(id) {
+      this.screenId = id;
       this.screenService.setSizeProvider(ScreenHelper.windowSize);
       this.screenService.connectToScreen(
         this.screenId,
         resp => {/* FIXME we currently ignore default values */},
         resp => this.router.navigate(['']) );
-    });
   }
 
   ngOnDestroy() {

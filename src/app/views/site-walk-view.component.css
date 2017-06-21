@@ -1,0 +1,10 @@
+.imgContainer {
+  overflow: hidden;
+}
+
+.imgContainer img {
+  position: absolute;
+  -moz-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+}

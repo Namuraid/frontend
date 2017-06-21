@@ -1,10 +1,8 @@
 <div class="outerScreen" (click)="toggleFS()">
   <div class="screenBorder"
-    [ngStyle]="(this.screenService.dimension | async) ||  {
-                'width.px': 1024, 'height.px': 720, 'top': 0, 'left': 0,
-                'background': 'black' }"
-    [ngSwitch]="(this.screenService.activeScreen?.activeScreen | async) || 'sponsors'">
-    <site-walk-view *ngSwitchCase="site-walk"></site-walk-view>
+    [ngStyle]="(this.screenService.dimension | async)"
+    [ngSwitch]="(this.screenService.activeScreen | async)?.activeScreen">
+    <site-walk-view *ngSwitchCase="'site-walk'"></site-walk-view>
     <start-view *ngSwitchCase="start"></start-view>
     <videofeed-view *ngSwitchCase="videofeed"></videofeed-view>
     <picture-slideshow-view *ngSwitchCase="picture-slideshow">
