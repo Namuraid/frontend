@@ -1,14 +1,14 @@
 <div class="outerScreen" (click)="toggleFS()">
   <div class="screenBorder"
-    [ngStyle]="(this.screenService.dimension | async)"
-    [ngSwitch]="(this.screenService.activeScreen | async)?.activeScreen">
+    [ngStyle]="style"
+    [ngSwitch]="activeScreen">
     <site-walk-view *ngSwitchCase="'site-walk'"></site-walk-view>
-    <start-view *ngSwitchCase="start"></start-view>
-    <videofeed-view *ngSwitchCase="videofeed"></videofeed-view>
-    <picture-slideshow-view *ngSwitchCase="picture-slideshow">
+    <start-view *ngSwitchCase="'start'"></start-view>
+    <videofeed-view *ngSwitchCase="'videofeed'"></videofeed-view>
+    <picture-slideshow-view *ngSwitchCase="'picture-slideshow'">
     </picture-slideshow-view>
-    <result-view *ngSwitchCase="result"></result-view>
-    <sponsors-view *ngSwitchCase="sponsors"></sponsors-view>
+    <result-view *ngSwitchCase="'result'"></result-view>
+    <sponsors-view *ngSwitchCase="'sponsors'"></sponsors-view>
     <sponsors-view *ngSwitchDefault></sponsors-view>
   </div>
 </div>

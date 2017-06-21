@@ -7,8 +7,8 @@ import { Logger } from './logger.service';
 
 
 /* FIXME remap dynamically hostname/port */
-export const SERVICE_URL = `localhost:4000`;
-const API_ENDPOINT = `ws://${SERVICE_URL}/socket`;
+export const SERVICE_URL = `localhost:4000/`;
+const API_ENDPOINT = `ws://${SERVICE_URL}socket`;
 
 
 export class WebSocketChannel {
@@ -22,6 +22,7 @@ export class WebSocketChannel {
   /* Join the channel and start receiving events (or push them) */
   public join(options = {}) {
     return new Observable(o => {
+      this.log.log(`Connecting to ${this.topic}`);
       this.channel.join()
         .receive("ok", resp => {
           this.log.log(`Connected to ${this.topic}/${JSON.stringify(resp)}`);
@@ -32,10 +33,13 @@ export class WebSocketChannel {
     });
   }
 
+  public join_noreturn(options = {}) {
+    return this.channel.join();
+  }
+
   /* Subscribe to events in the channel named 'key',
   * and parse their associated meaning */
   public subscribe<T>(key) : Observable<T> {
-    this.log.log(`Joining ${key}`);
     return new Observable(o => {
       this.channel.on(key, resp => {
         this.log.log(`New message for ${this.topic}[${key}]: ${JSON.stringify(resp)}`);

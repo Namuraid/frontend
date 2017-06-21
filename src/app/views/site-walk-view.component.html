@@ -1,5 +1,5 @@
-<div class="imgContainer" ngFor*="let pan of view | async">
-  <img src="{{ this.prefix }}/{{ (this.picture | async)?.picture }}"
-       style="pan.style" />
-  <span class="legend">{{ pan.legend }}</span>
+<div class="imgContainer">
+  <span class="legend">{{ view.legend }}</span>
+  <img [src]="'http://' + prefix + 'images/plan_2017.jpg'"
+       [style]="view.style" />
 </div>

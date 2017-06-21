@@ -12,8 +12,11 @@ declare var ScreenHelper: any;
 })
 export class ScreenComponent implements OnInit, OnDestroy {
   public screenId: string = '';
+  public style = '';
+  public activeScreen = '';
 
   private _route_subscription = null;
+  private _properties_subscription = null;
 
   constructor(private screenService: ScreenService,
               private router: Router,
@@ -24,18 +27,18 @@ export class ScreenComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this._route_subscription = this.route.params.subscribe(
       p => this.switchTo(p['id']));
+    this._properties_subscription = this.screenService.properties
+      .subscribe(prop => this.updateProperties(prop));
   }
 
   switchTo(id) {
       this.screenId = id;
       this.screenService.setSizeProvider(ScreenHelper.windowSize);
-      this.screenService.connectToScreen(
-        this.screenId,
-        resp => {/* FIXME we currently ignore default values */},
-        resp => this.router.navigate(['']) );
+      this.screenService.connectToScreen(this.screenId);
   }
 
   ngOnDestroy() {
+    this._properties_subscription.unsubscribe();
     this._route_subscription.unsubscribe();
     this.screenService.leave();
   }
@@ -43,5 +46,10 @@ export class ScreenComponent implements OnInit, OnDestroy {
   toggleFS() {
     ScreenHelper.toggleFullScreen();
     this.screenService.notifyResize();
+  }
+
+  updateProperties(prop) {
+    this.style = prop.style;
+    this.activeScreen = prop.activeScreen;
   }
 }

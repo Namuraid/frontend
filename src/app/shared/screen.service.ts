@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { WebsocketService, WebSocketChannel } from './websocket.service';
 import { Logger } from './logger.service';
@@ -7,26 +8,20 @@ import { Logger } from './logger.service';
 @Injectable()
 export class ScreenService {
   private channel: WebSocketChannel = null;
-  public activeScreen = null;
-  public dimension  = null;
+  public properties = null;
   private getsize = null;
-  private _init_val_subscription = null;
 
 	constructor(private wsService: WebsocketService, private log: Logger) {
     this.log = log.getLogger("ScreenService");
 	}
 
-  public connectToScreen(name: string, success = _ => {}, error = _ => {}) {
+  public connectToScreen(name: string) {
     this.log.log(`Moving to channel ${name}`);
     if (this.channel != null)
       this.channel.leave();
     this.channel = this.wsService.channel(`screen:${name}`);
-    this.dimension = this.channel.subscribe("dimension");
-    this.activeScreen = this.channel.subscribe("activescreen");
-    if (this._init_val_subscription != null)
-      this._init_val_subscription.unsubscribe();
-    this._init_val_subscription = this.channel
-      .join().subscribe(success, error);
+    let _obs = this.channel.subscribe("properties");
+    this.properties = Observable.merge(this.channel.join(), _obs);
   }
 
   public notifyResize() {
@@ -43,7 +38,6 @@ export class ScreenService {
   }
 
   public leave() {
-    this._init_val_subscription.unsubscribe();
     this.clearSizeProvider();
   }
 
