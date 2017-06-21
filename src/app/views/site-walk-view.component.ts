@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import { Logger } from '../shared/logger.service';
 import { WebsocketService, SERVICE_URL } from '../shared/websocket.service';
+import { resetTimer } from '../shared/utils'
 
 
 const DEFAULT_INTERVAL = 3000;
@@ -39,7 +39,6 @@ export class SiteWalkViewComponent implements OnInit, OnDestroy {
   }
 
   private resetTimer(interval) {
-    this.view = Observable.interval(interval)
-      .map(t => this.panValues[t % this.panValues.length]);
+    this.view = resetTimer(interval, t => this.panValues[t % this.panValues.length]);
   }
 }
