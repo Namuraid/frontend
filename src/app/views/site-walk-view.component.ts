@@ -1,10 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-<<<<<<< HEAD
 
-import { Logger } from '../shared/logger.service';
-import { WebsocketService, SERVICE_URL } from '../shared/websocket.service';
-import { resetTimer } from '../shared/utils'
-=======
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 
@@ -13,7 +8,7 @@ import {
   WebsocketService,
   WebSocketChannel,
   SERVICE_URL } from '../shared/websocket.service';
->>>>>>> Site-walk frontend display
+import { resetTimer } from '../shared/utils'
 
 
 const DEFAULT_INTERVAL = 3000;

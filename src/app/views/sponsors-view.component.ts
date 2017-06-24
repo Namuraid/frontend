@@ -11,10 +11,11 @@ const DEFAULT_INTERVAL = 5000;
     styleUrls: ['./sponsors-view.component.css']
 })
 export class SponsorsViewComponent {
-  @Input() sponsors: string[] = [];
+  sponsors: string[] = [];
   sponsorImgUrl: Observable<string>;
 
   constructor(private screen: ScreenService) {
+    //TODO retreive sponsor from ws
     this.resetTimer(DEFAULT_INTERVAL)
   }
 
