@@ -1,0 +1,17 @@
+<sponsors-view [forcePortrait]="true"></sponsors-view>
+<table>
+    <thead>
+        <th>#</th>
+        <th>Nom</th>
+        <th>Temps</th>
+        <th>Catégorie</th>
+    </thead>
+    <tbody>
+        <tr class="results" *ngFor="let row of results; let i = index">
+            <td class="rank" *ngIf="i >= displayStart && i < displayStart + ROWCOUNT">{{ row.rank }}</td>
+            <td class="name" *ngIf="i >= displayStart && i < displayStart + ROWCOUNT">{{ row.name }}</td>
+            <td class="time" *ngIf="i >= displayStart && i < displayStart + ROWCOUNT">{{ row.time }}</td>
+            <td class="cat" *ngIf="i >= displayStart && i < displayStart + ROWCOUNT">{{ row.rankCat }} ({{ row.cat }})</td>
+        </tr>
+    </tbody>
+</table>

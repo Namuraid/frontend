@@ -1,0 +1,27 @@
+table {
+    width: 100%;
+}
+
+th {
+    font-weight: 350;
+    font-size: 500%;
+    text-align: left;
+    padding: 20px;
+}
+
+thead {
+    color: white;
+    background-color: #2fa72f;
+}
+
+td {
+    font-size: 350%;
+    padding: 14px;
+}
+
+sponsors-view {
+    position: fixed;
+    height: 20%;
+    bottom: 0;
+    width: 100%;
+}
