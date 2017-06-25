@@ -10,29 +10,13 @@
   position: absolute;
 }
 
-.countdown {
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 .sponsors {
   position: absolute;
-  height: 25%;
+  height: 35%;
   bottom: 0;
   width: 100%;
   z: 500;
   clip-path: inset(0 0 0 0);
-}
-
-.maximized {
-  height: 100%;
-  z: 1000;
-  width: 100%;
-  margin: 0;
-  position: absolute;
-  background-color: white;
 }
 
 .dossard {
@@ -45,26 +29,11 @@
   text-align: center;
   z: 0;
 }
-
-.time {
-  font-family: "d7segments";
-  text-align: center;
-  font-size: 400%;
-  color: #0f6f0f;
-}
-
-.border {
-  border-style: solid;
-  border-width: 5px;
-  border-color: #006600;
-}
-
 .red {
   text-align: center;
   width: 100%;
   color: #c31a0e;
 }
-
-.above {
-  z: 1000;
+.mid {
+  transform: translateY(60%);
 }

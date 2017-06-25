@@ -50,6 +50,7 @@ export class WebSocketChannel {
   /* Execute the given function when an event is received in the channel */
   public on(key, f) {
     this.channel.on(key, f);
+    return this;
   }
 
   /* Push a message to the channel, optionally with a payload */

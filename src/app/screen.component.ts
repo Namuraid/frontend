@@ -1,14 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ScreenService } from './shared/screen.service';
+import { WebSocketChannel } from './shared/websocket.service';
 import { Observable, Subscriber } from 'rxjs';
+import { slideInOutXAnimation } from './shared/slide-in-out.animation';
 
 declare var ScreenHelper: any;
 
 
 @Component({
   templateUrl: './screen.component.html',
-  styleUrls: ['./screen.component.css']
+  styleUrls: ['./screen.component.css'],
+  animations: [ slideInOutXAnimation ]
 })
 export class ScreenComponent implements OnInit, OnDestroy {
   public screenId: string = '';
@@ -21,7 +24,7 @@ export class ScreenComponent implements OnInit, OnDestroy {
   constructor(private screenService: ScreenService,
               private router: Router,
               private route: ActivatedRoute) {
-              console.log('have router', router);}
+  }
 
 
   ngOnInit() {

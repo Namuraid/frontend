@@ -1,0 +1,14 @@
+<div class="start">
+  <div class="dossard red" *ngIf="nextStart">
+    Depart <u>Imminent</u> des dossards
+    {{ nextStart.firstNum }}-{{ nextStart.lastNum }}!
+  </div>
+  <div class="dossard mid">
+    Depart des dossards
+    {{ nextStart.nextFirst }}-{{ nextStart.nextLast }}
+    dans 5 minutes.
+  </div>
+  <div class="sponsors">
+    <sponsors-view [forcePortrait]="true"></sponsors-view>
+  </div>
+</div>

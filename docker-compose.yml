@@ -15,7 +15,7 @@ services:
     build:
         context: ./backend
         dockerfile: Dockerfile
-    command: sh -c 'mix ecto.create; mix ecto.migrate ; mix phoenix.server'
+    command: sh -c 'mix deps.get; mix ecto.create; mix ecto.migrate ; mix phoenix.server'
     volumes:
       - ./backend:/app
       - /app/deps

@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 
@@ -65,6 +64,7 @@ export class SiteWalkViewComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this._timer)
       this._timer.unsubscribe();
+    this.chan.leave();
   }
 
   private resetTimer(interval) {

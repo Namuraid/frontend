@@ -1,1 +1,7 @@
-<img [src]="sponsorImgUrl | async" />
+<div *ngFor="let s of sponsors">
+  <div *ngIf="s.id == activeSponsor" class="surrounding" [@zoomInZoomOut]
+    [style.background-color]="s.background">
+    <img [src]="s.url" [class]="forcePortrait ? 'portrait' : s.orientation"
+          [@zoomInZoomOut]/>
+  </div>
+</div>

@@ -2,13 +2,14 @@
   <div class="screenBorder"
     [ngStyle]="style"
     [ngSwitch]="activeScreen">
-    <site-walk-view *ngSwitchCase="'site-walk'"></site-walk-view>
-    <start-view *ngSwitchCase="'start'"></start-view>
-    <videofeed-view *ngSwitchCase="'videofeed'"></videofeed-view>
-    <picture-slideshow-view *ngSwitchCase="'picture-slideshow'">
+    <site-walk-view *ngSwitchCase="'site-walk'" [@slideInOutX]></site-walk-view>
+    <start-view *ngSwitchCase="'start'" [@slideInOutX]></start-view>
+    <videofeed-view *ngSwitchCase="'videofeed'" [@slideInOutX]></videofeed-view>
+    <picture-slideshow-view *ngSwitchCase="'picture-slideshow'" [@slideInOutX]>
     </picture-slideshow-view>
-    <result-view *ngSwitchCase="'result'"></result-view>
-    <sponsors-view *ngSwitchCase="'sponsors'"></sponsors-view>
-    <sponsors-view *ngSwitchDefault></sponsors-view>
+    <result-view *ngSwitchCase="'result'" [@slideInOutX]></result-view>
+    <sponsors-view *ngSwitchCase="'sponsors'" [@slideInOutX]></sponsors-view>
+    <info-start-view *ngSwitchCase="'info-start'" [@slideInOutX]></info-start-view>
+    <sponsors-view *ngSwitchDefault [@slideInOutX] ></sponsors-view>
   </div>
 </div>

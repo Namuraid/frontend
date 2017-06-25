@@ -1,0 +1,19 @@
+<div class="start">
+  <div class="dossard">
+    Depart des dossards {{ firstNum }}-{{ lastNum }}
+  </div>
+  <div class="countdown">
+    <div class="time border" *ngIf="+s >= 6">
+      {{ m }} : {{ s }} . {{ ds }}
+    </div>
+    <div class="time above" *ngIf="+s == 5" [@zoomIn] >5</div>
+    <div class="time above" *ngIf="+s == 4" [@zoomIn] >4</div>
+    <div class="time above" *ngIf="+s == 3" [@zoomIn] >3</div>
+    <div class="time above" *ngIf="+s == 2" [@zoomIn] >2</div>
+    <div class="time above" *ngIf="+s == 1" [@zoomIn] >1</div>
+    <div class="red above" *ngIf="+s == 0" [@zoomIn] >GO!</div>
+  </div>
+  <div [class]="maximizeSponsors ? 'maximized' : 'sponsors'">
+    <sponsors-view [forcePortrait]="true || maximizeSponsors"></sponsors-view>
+  </div>
+</div>

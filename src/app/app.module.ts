@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 /* We use angular metarial components */
-import { MdButtonModule, MdSelectModule } from '@angular/material';
+import { MdButtonModule, MdSelectModule, MdProgressSpinnerModule } from '@angular/material';
 
 /* Base imports to bootstrap everything */
 import { AppComponent } from './app.component';
@@ -14,6 +14,7 @@ import { ScreenComponent } from './screen.component';
 /* Screen subviews components */
 import { SiteWalkViewComponent } from './views/site-walk-view.component';
 import { StartViewComponent } from './views/start-view.component';
+import { InfoStartViewComponent } from './views/info-start-view.component';
 import { VideofeedViewComponent } from './views/videofeed-view.component';
 import {
   PictureSlideshowViewComponent
@@ -37,6 +38,7 @@ import { WebsocketService } from './shared/websocket.service';
     PictureSlideshowViewComponent,
     ResultViewComponent,
     SponsorsViewComponent,
+    InfoStartViewComponent
   ],
   imports: [
     BrowserModule,
