@@ -1,6 +1,6 @@
 <div class="outerScreen" (click)="toggleFS()">
   <div class="screenBorder"
-    [ngStyle]="style"
+    [style]="style"
     [ngSwitch]="activeScreen">
     <site-walk-view *ngSwitchCase="'site-walk'" [@slideInOutX]></site-walk-view>
     <start-view *ngSwitchCase="'start'" [@slideInOutX]></start-view>

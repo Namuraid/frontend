@@ -40,7 +40,7 @@
   position: absolute;
   width: 100%;
   height: 25%;
-  font-size: 200%;
+  font-size: 800%;
   color: #006600;
   text-align: center;
   z: 0;
@@ -49,7 +49,7 @@
 .time {
   font-family: "d7segments";
   text-align: center;
-  font-size: 400%;
+  font-size: 1200%;
   color: #0f6f0f;
 }
 

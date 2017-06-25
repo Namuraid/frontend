@@ -7,7 +7,7 @@ import { Logger } from './logger.service';
 
 
 /* FIXME remap dynamically hostname/port */
-export const SERVICE_URL = `localhost:4000/`;
+export const SERVICE_URL = `192.168.1.102:4000/`;
 const API_ENDPOINT = `ws://${SERVICE_URL}socket`;
 
 

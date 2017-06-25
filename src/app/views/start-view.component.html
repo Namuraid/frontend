@@ -3,15 +3,15 @@
     Depart des dossards {{ firstNum }}-{{ lastNum }}
   </div>
   <div class="countdown">
-    <div class="time border" *ngIf="+s >= 6">
+    <div class="time border" *ngIf="+s + +m * 60 >= 6">
       {{ m }} : {{ s }} . {{ ds }}
     </div>
-    <div class="time above" *ngIf="+s == 5" [@zoomIn] >5</div>
-    <div class="time above" *ngIf="+s == 4" [@zoomIn] >4</div>
-    <div class="time above" *ngIf="+s == 3" [@zoomIn] >3</div>
-    <div class="time above" *ngIf="+s == 2" [@zoomIn] >2</div>
-    <div class="time above" *ngIf="+s == 1" [@zoomIn] >1</div>
-    <div class="red above" *ngIf="+s == 0" [@zoomIn] >GO!</div>
+    <div class="time above" *ngIf="+s == 5 && +m == 0" [@zoomIn] >5</div>
+    <div class="time above" *ngIf="+s == 4 && +m == 0" [@zoomIn] >4</div>
+    <div class="time above" *ngIf="+s == 3 && +m == 0" [@zoomIn] >3</div>
+    <div class="time above" *ngIf="+s == 2 && +m == 0" [@zoomIn] >2</div>
+    <div class="time above" *ngIf="+s == 1 && +m == 0" [@zoomIn] >1</div>
+    <div class="red above" *ngIf="+s == 0 && +m == 0" [@zoomIn] >GO!</div>
   </div>
   <div [class]="maximizeSponsors ? 'maximized' : 'sponsors'">
     <sponsors-view [forcePortrait]="true || maximizeSponsors"></sponsors-view>

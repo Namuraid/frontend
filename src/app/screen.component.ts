@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ScreenService } from './shared/screen.service';
 import { WebSocketChannel } from './shared/websocket.service';
@@ -15,7 +16,7 @@ declare var ScreenHelper: any;
 })
 export class ScreenComponent implements OnInit, OnDestroy {
   public screenId: string = '';
-  public style = '';
+  public style;
   public activeScreen = '';
 
   private _route_subscription = null;
@@ -23,7 +24,8 @@ export class ScreenComponent implements OnInit, OnDestroy {
 
   constructor(private screenService: ScreenService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private sanitizer: DomSanitizer) {
   }
 
 
@@ -52,7 +54,10 @@ export class ScreenComponent implements OnInit, OnDestroy {
   }
 
   updateProperties(prop) {
-    this.style = prop.style;
+    this.style = this.sanitizer.bypassSecurityTrustStyle(
+      `top:${prop.style.top}px; left: ${prop.style.left}px;
+      width:${prop.style['width.px']}px; height:${prop.style['height.px']}px;
+      background-color: ${prop.style['background']};`);
     this.activeScreen = prop.activeScreen;
   }
 }
